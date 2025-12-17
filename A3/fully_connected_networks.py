@@ -588,6 +588,7 @@ def sgd_momentum(w, dw, config=None):
     # update the velocity v.                                         #
     ##################################################################
     # Replace "pass" statement with your code
+    dw= dw.view_as(w)
     mu = config.get('momentum')
     learning_rate= config.get('learning_rate')
     v = mu * v - learning_rate * dw # integrate velocity
@@ -681,6 +682,8 @@ def adam(w, dw, config=None):
     v = config['v'] 
     t = config['t']
     learning_rate= config['learning_rate']
+
+    dw = w.view_as(w)
 
     t += 1
 
